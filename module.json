@@ -1,0 +1,15 @@
+{
+    "name": "Turn Timer",
+    "title": "Turn Timer",
+    "description": "A timer that counts how long a turn has taken.",
+    "author": "FragSauce",
+    "version": "1.0.0",
+    "minimumCoreVersion": "0.8.9",
+    "compatibleCoreVersion": "0.8.9",
+    "scripts": [
+        "init.js"
+    ],
+    "url": "",
+    "manifest": "",
+    "download": ""
+}
