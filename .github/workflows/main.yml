@@ -13,7 +13,7 @@ jobs:
 
       - name: Zip Files
         working-directory: ./
-        run: zip -r ./module.zip ./*
+        run: zip -r ./turntimer.zip ./*
       
       - name: Get Version
         shell: bash
@@ -29,5 +29,5 @@ jobs:
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: './module.zip, ./module.json'
+          artifacts: './turntimer.zip, ./module.json'
           tag: ${{steps.get-version.outputs.version}}
