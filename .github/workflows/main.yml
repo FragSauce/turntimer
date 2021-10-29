@@ -24,10 +24,10 @@ jobs:
         id: create-release
         uses: ncipollo/release-action@v1
         with:
-        allowUpdates: true
-        name: Release ${{steps.get-version.outputs.version}}
-        draft: false
-        prerelease: false
-        token: ${{secrets.GITHUB_TOKEN}}
-        artifacts: './module.zip, ./module.json'
-        tag: ${{steps.get-version.outputs.version}}
+          allowUpdates: true
+          name: Release ${{steps.get-version.outputs.version}}
+          draft: false
+          prerelease: false
+          token: ${{secrets.GITHUB_TOKEN}}
+          artifacts: './module.zip, ./module.json'
+          tag: ${{steps.get-version.outputs.version}}
