@@ -1,9 +1,9 @@
-import {TimerWindow} from "./timerWindow"
+import {getTimerWindow} from "./timerWindow";
 
 let currentTime = 0;
 let maxTime = 10
 let inter;
-let timerWindow = new TimerWindow()
+let timerWindow = getTimerWindow()
 
 Hooks.on('preUpdateCombat', turnChange());
 
