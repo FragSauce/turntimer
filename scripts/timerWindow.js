@@ -2,7 +2,7 @@
 
 
 
-class TimerWindow extends Application {
+export class TimerWindow extends Application {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             template: `modules/${module.id}/templates/timerWindow.html`,

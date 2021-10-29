@@ -1,3 +1,5 @@
+import {TimerWindow} from "./timerWindow"
+
 let currentTime = 0;
 let maxTime = 10
 let inter;
