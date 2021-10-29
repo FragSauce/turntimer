@@ -2,7 +2,7 @@ import {TimerWindow} from "./timerWindow.js"
 
 
 let currentTime = 0;
-let maxTime = 60
+let maxTime = 10
 let inter;
 let window = new TimerWindow()
 
@@ -13,14 +13,15 @@ Hooks.on("ready", function() {
     console.log("Turn Timer is loaded");
 });
 
-Hooks.on('deleteCombat', async () => {
+Hooks.on('deleteCombat', () => {
     clearIntervalinter(inter)
     window.render(false)
 })
 
 
 
-turnChange = async () => {
+async function turnChange() {
+    console.log("hey it works")
     window.render(true);
     clearInterval(inter);
     currentTime.value = 0;
@@ -29,10 +30,11 @@ turnChange = async () => {
 }
 
 
-tickTimer = async () => {
+async function tickTimer() {
     currentTime++
     timerUI.value = currentTime
     if (currentTime > maxTime) {
+        console.log("times up")
         clearInterval(inter)
         //code to say a chat message that time is up.
     }
