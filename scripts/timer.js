@@ -1,7 +1,7 @@
 let currentTime = 0;
 let maxTime = 10
 let inter;
-let window = new TimerWindow()
+let timerWindow = new TimerWindow()
 
 Hooks.on('preUpdateCombat', turnChange());
 
@@ -12,14 +12,14 @@ Hooks.on("ready", function() {
 
 Hooks.on('deleteCombat', () => {
     clearIntervalinter(inter)
-    window.render(false)
+    timerWindow.render(false)
 })
 
 
 
 async function turnChange() {
     console.log("hey it works")
-    window.render(true);
+    timerWindow.render(true);
     clearInterval(inter);
     currentTime.value = 0;
     timerUI = document.getElementById("currentTimer")
