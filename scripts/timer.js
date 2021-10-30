@@ -40,7 +40,7 @@ function changeTimerColor(color) {
     var timers = document.getElementsByClassName("turntimer")
     
     if (timers.length != 0 ){
-        for (var i = 0; i < oldEles.length; i++) {
+        for (var i = 0; i < timers.length; i++) {
             timers[i].style.color = color
         }
     }
