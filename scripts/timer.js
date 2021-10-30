@@ -14,7 +14,7 @@ function updateUI() {
     
     if (oldEles.length != 0 ){
         for (var i = 0; i < oldEles.length; i++) {
-            oldEles[i].remove
+            oldEles[i].remove()
         }
     }
     
@@ -28,12 +28,27 @@ function updateUI() {
 
 Hooks.on('deleteCombat', () => {
     clearInterval(inter)
-    reset = true
+    resetTimer()
 })
+
+function resetTimer() {
+    reset = true
+    changeTimerColor("white")
+}
+
+function changeTimerColor(color) {
+    var timers = document.getElementsByClassName("turntimer")
+    
+    if (timers.length != 0 ){
+        for (var i = 0; i < oldEles.length; i++) {
+            timers[i].style.color = color
+        }
+    }
+}
 
 function turnChange() {
     console.log("hey it works")
-    reset = true
+    resetTimer()
     clearInterval(inter);
     timerUI = document.getElementById("currentTimer")
     inter = setInterval(tickTimer, 1000);
@@ -52,22 +67,24 @@ async function tickTimer() {
         } else {
             currentTime ++
         }
-        
 
         var uiTimers = document.getElementsByClassName("turntimer")
 
         for (var i = 0; i < uiTimers.length; i++) {
             uiTimers[i].innerHTML = ("TIMER: " + currentTime);
+            
         }
         
         if (currentTime == game.settings.get("turntimer", "firstalerttime")) {
             console.log("times ALMOST up")
+            changeTimerColor("orange")
         }
 
         if (currentTime >= game.settings.get("turntimer", "finalalerttime")) {
             console.log("times up now roll what you need and then end turn")
+            changeTimerColor("red")
             clearInterval(inter)
-            reset = true
+            resetTimer()
         }
     }
 }
