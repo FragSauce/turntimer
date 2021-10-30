@@ -6,6 +6,12 @@ Hooks.on('preUpdateCombat', function () {turnChange()});
 
 Hooks.on("ready", function() {
     console.log("Turn Timer is loaded");
+    var elms = document.querySelectorAll("[id='combat-round']");
+
+        for(var i = 0; i < elms.length; i++) {
+        elms[i].innerHTML += "<p class='turntimer'>TIMER: 0</p>"
+        }
+  
 });
 
 Hooks.on('deleteCombat', () => {
@@ -26,6 +32,9 @@ function turnChange() {
 async function tickTimer() {
     currentTime++
     console.log(currentTime)
+    document.getElementsByClassName("turntimer").array.forEach(element => {
+        element.value("TIMER: " + currentTime)
+    });
     //timerUI.value = currentTime
     if (currentTime == game.settings.get("turntimer", "firstalerttime")) {
         console.log("times ALMOST up")

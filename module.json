@@ -3,7 +3,7 @@
     "title": "Turn Timer",
     "description": "A timer that counts how long a turn has taken.",
     "author": "FragSauce",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "minimumCoreVersion": "0.8.9",
     "compatibleCoreVersion": "0.8.9",
     "socket": true,
@@ -12,6 +12,6 @@
         "scripts/timer.js"
     ],
     "url": "https://github.com/FragSauce/turntimer",
-    "manifest": "https://github.com/FragSauce/turntimer/releases/download/1.2.1/module.json",
-    "download": "https://github.com/FragSauce/turntimer/releases/download/1.2.1/turntimer.zip"
+    "manifest": "https://github.com/FragSauce/turntimer/releases/download/1.2.2/module.json",
+    "download": "https://github.com/FragSauce/turntimer/releases/download/1.2.2/turntimer.zip"
 }
