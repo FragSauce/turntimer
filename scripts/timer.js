@@ -1,18 +1,23 @@
 let currentTime = 0;
 let inter;
+let reset = false;
 
 Hooks.on('preUpdateCombat', function () {turnChange()});
 
 
 Hooks.on("ready", function() {
     console.log("Turn Timer is loaded");
-    updateUI()
 });
 
 function updateUI() {
-    document.getElementsByClassName("turntimer").forEach(element => {
-        element.remove()
-    })
+    var oldEles = document.getElementsByClassName("turntimer")
+    
+    if (oldEles.length != 0 ){
+        for (var i = 0; i < oldEles.length; i++) {
+            oldEles[i].remove
+        }
+    }
+    
 
     var elms = document.querySelectorAll("[id='combat-round']");
 
@@ -23,33 +28,46 @@ function updateUI() {
 
 Hooks.on('deleteCombat', () => {
     clearInterval(inter)
-    currentTime = 0;
+    reset = true
 })
 
 function turnChange() {
     console.log("hey it works")
+    reset = true
     clearInterval(inter);
-    currentTime.value = 0;
     timerUI = document.getElementById("currentTimer")
     inter = setInterval(tickTimer, 1000);
 }
 
 
 async function tickTimer() {
-    currentTime++
     console.log(currentTime)
+    console.log(reset)
     if (document.getElementsByClassName("turntimer").length != document.querySelectorAll("[id='combat-round']").length) {
         updateUI()
     } else {
-        document.getElementsByClassName("turntimer").array.forEach(element => {
-            element.value("TIMER: " + currentTime)
-        });
+        if (reset) {
+            currentTime = 0
+            reset = false
+        } else {
+            currentTime ++
+        }
+        
+
+        var uiTimers = document.getElementsByClassName("turntimer")
+
+        for (var i = 0; i < uiTimers.length; i++) {
+            uiTimers[i].innerHTML = ("TIMER: " + currentTime);
+        }
+        
         if (currentTime == game.settings.get("turntimer", "firstalerttime")) {
             console.log("times ALMOST up")
         }
+
         if (currentTime >= game.settings.get("turntimer", "finalalerttime")) {
             console.log("times up now roll what you need and then end turn")
             clearInterval(inter)
+            reset = true
         }
     }
 }
