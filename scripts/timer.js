@@ -1,5 +1,3 @@
-import {getTimerWindow} from "./timerWindow";
-
 let currentTime = 0;
 let maxTime = 10
 let inter;
@@ -37,5 +35,21 @@ async function tickTimer() {
         clearInterval(inter)
         //code to say a chat message that time is up.
     }
+}
+
+function getTimerWindow() {
+    class TimerWindow extends Application {
+        static get defaultOptions() {
+            return mergeObject(super.defaultOptions, {
+                template: `modules/${module.id}/templates/timerWindow.html`,
+                resizable: false,
+                width: 300,
+                height: 200,
+                classes: ["timerWindow"],
+                title: `Timer`
+            });
+        }
+    }
+    return new TimerWindow();
 }
 
