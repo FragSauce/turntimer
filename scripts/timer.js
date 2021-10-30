@@ -18,7 +18,7 @@ function updateUI() {
 }
 
 Hooks.on('deleteCombat', () => {
-    clearIntervalinter(inter)
+    clearInterval(inter)
     currentTime = 0;
 })
 
@@ -34,7 +34,7 @@ function turnChange() {
 async function tickTimer() {
     currentTime++
     console.log(currentTime)
-    if (document.getElementsByClassName("turntimer").array.length == 0) {
+    if (document.getElementsByClassName("turntimer").length == 0) {
         updateUI()
     } else {
         document.getElementsByClassName("turntimer").array.forEach(element => {
