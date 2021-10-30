@@ -76,15 +76,14 @@ async function tickTimer() {
         }
         
         if (currentTime == game.settings.get("turntimer", "firstalerttime")) {
-            console.log("times ALMOST up")
+            ui.chat.postOne(ui.chat.processMessage("Times almost up! better start rolling"))
             changeTimerColor("orange")
         }
 
         if (currentTime >= game.settings.get("turntimer", "finalalerttime")) {
-            console.log("times up now roll what you need and then end turn")
+            ui.chat.postOne(ui.chat.processMessage("Times up! Finish your turn as fast as possible"))
             changeTimerColor("red")
             clearInterval(inter)
-            resetTimer()
         }
     }
 }
