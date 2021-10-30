@@ -38,6 +38,8 @@ async function tickTimer() {
 }
 
 function getTimerWindow() {
+    const module = game.modules.get("Turn Timer");
+
     class TimerWindow extends Application {
         static get defaultOptions() {
             return mergeObject(super.defaultOptions, {
