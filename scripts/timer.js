@@ -1,9 +1,7 @@
 let currentTime = 0;
-let maxTime = 10
 let inter;
-let timerWindow = getTimerWindow()
 
-Hooks.on('preUpdateCombat', turnChange());
+Hooks.on('preUpdateCombat', function () {turnChange()});
 
 
 Hooks.on("ready", function() {
@@ -12,14 +10,12 @@ Hooks.on("ready", function() {
 
 Hooks.on('deleteCombat', () => {
     clearIntervalinter(inter)
-    timerWindow.render(false)
 })
 
 
 
-async function turnChange() {
+function turnChange() {
     console.log("hey it works")
-    timerWindow.render(true);
     clearInterval(inter);
     currentTime.value = 0;
     timerUI = document.getElementById("currentTimer")
@@ -29,21 +25,23 @@ async function turnChange() {
 
 async function tickTimer() {
     currentTime++
-    timerUI.value = currentTime
-    if (currentTime > maxTime) {
-        console.log("times up")
-        clearInterval(inter)
-        //code to say a chat message that time is up.
+    console.log(currentTime)
+    //timerUI.value = currentTime
+    if (currentTime == game.settings.get("turntimer", "firstalerttime")) {
+        console.log("times ALMOST up")
     }
+    if (currentTime >= game.settings.get("turntimer", "finalalerttime")) {
+        console.log("times up now roll what you need and then end turn")
+    }
+
+
 }
 
-function getTimerWindow() {
-    const module = game.modules.get("Turn Timer");
-
+async function renderTimerWindow() {
     class TimerWindow extends Application {
-        static get defaultOptions() {
+        static defaultOptions() {
             return mergeObject(super.defaultOptions, {
-                template: `modules/${module.id}/templates/timerWindow.html`,
+                template: `modules/turntimer/templates/timerWindow.html`,
                 resizable: false,
                 width: 300,
                 height: 200,
@@ -52,6 +50,6 @@ function getTimerWindow() {
             });
         }
     }
-    return new TimerWindow();
+    new TimerWindow().render(true);
 }
 
