@@ -6,7 +6,7 @@ Hooks.on('init', function() {
         scope: "world",
         config: true,
         default: 60,
-        type: Integer
+        type: Number
     })
 
     game.settings.register("turntimer", "finalalerttime", {
@@ -15,7 +15,7 @@ Hooks.on('init', function() {
         scope: "world",
         config: true,
         default: 90,
-        type: Integer
+        type: Number
     })
     
 
